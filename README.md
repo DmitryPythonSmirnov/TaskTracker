@@ -122,7 +122,7 @@ Running migrations:
   Applying sessions.0001_initial... OK
 ```
 
-11. Создать суперпользователя (адрес электронной почты можно не указывать).
+11. Создать суперпользователя (адрес электронной почты можно не указывать): `python manage.py createsuperuser`.
 ```
 python manage.py createsuperuser
 Имя пользователя: django
