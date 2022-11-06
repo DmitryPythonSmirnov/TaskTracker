@@ -1,0 +1,22 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="task">
+
+    <form action="{% url 'create_task' %}" method="post">
+        {% csrf_token %}
+        {{ create_task_form.as_p }}
+        <input class="form-control btn btn-primary" type="submit" value="Создать задачу">
+    </form>
+
+    <br>
+
+    <form action="{% url 'opened_tasks' %}">
+        <button class="form-control btn btn-primary" type="submit">На главную</button>
+    </form>
+
+</div>
+
+{% endblock content %}

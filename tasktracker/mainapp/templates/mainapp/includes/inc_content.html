@@ -1,0 +1,23 @@
+{% for task in tasks %}
+<hr>
+<article class="article">
+    <header>
+        <div class="d-flex justify-content-between">
+            <span class="task_title text-primary">{{ task.title }}</span>
+            <a class="text-muted text-decoration-none" style="font-size: 0.7em;"
+                href="{% url 'edit_task' task.pk %}">Редактировать</a>
+        </div>
+        <div class="text-primary" style="font-size: 0.8em;">Тема: {{ task.topic }}</div>
+
+        <p class="task_info">
+            <span class="task_info_span">Author: {{ task.user.username }}</span>
+            <span class="task_info_span">Создана: {{ task.created_at }}</span>
+            <span class="task_info_span">Обновлена: {{ task.updated_at }}</span>
+        </p>
+    </header>
+    <p class="task_text">
+        {{ task.task_text }}
+    </p>
+</article>
+
+{% endfor %}

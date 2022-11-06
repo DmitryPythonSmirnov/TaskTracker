@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+
+{% block pagination %}
+<div class="mt-2">
+    {% if tasks.has_previous %}
+    <a href="{% url 'opened_tasks_page' tasks.previous_page_number %}" class="me-2">Previous</a>
+    {% else %}
+    <span class="me-2 text-muted">Previous</span>
+    {% endif %}
+
+    <span class="current"> Страница {{ tasks.number }} из {{ tasks.paginator.num_pages }}</span>
+
+    {% if tasks.has_next %}
+    <a href="{% url 'opened_tasks_page' tasks.next_page_number %}" class="ms-2">Next</a>
+    {% else %}
+    <span class="ms-2 text-muted">Next</span>
+    {% endif %}
+</div>
+{% endblock pagination %}
+
+
+{% block content %}
+{% include 'mainapp/includes/inc_content.html' %}
+{% endblock content %}
