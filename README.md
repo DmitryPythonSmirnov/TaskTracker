@@ -94,7 +94,7 @@ Migrations for 'mainapp':
 ```
 
 10. Выполнить миграции: `python manage.py migrate`.  
-В каталоге должен повиться файл "db.sqlite3".
+В текущем каталоге должен повиться файл "db.sqlite3".
 ```
 python manage.py migrate
 Operations to perform:
