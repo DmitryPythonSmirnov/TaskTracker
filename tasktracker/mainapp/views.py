@@ -80,9 +80,13 @@ def create_task(request):
     if request.method == 'POST':
         create_task_form = TaskForm(request.POST)
         if create_task_form.is_valid():
-            new_task = create_task_form.save(commit=False)
-            new_task.user = request.user
-            new_task.save()
+            create_task_form.instance.user = request.user
+            create_task_form.save()
+
+            # Оставил комментарии, чтобы видеть, какой вариант применял сначала
+            # new_task = create_task_form.save(commit=False)
+            # new_task.user = request.user
+            # new_task.save()
             return HttpResponseRedirect(reverse('opened_tasks'))
     else:
         create_task_form = TaskForm()
@@ -104,14 +108,20 @@ def edit_task(request, pk):
         edit_task_form = TaskForm(request.POST, instance=task)
         if edit_task_form.is_valid():
             edit_task_form.save()
-            return HttpResponseRedirect(reverse('opened_tasks'))
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                return HttpResponseRedirect(reverse('opened_tasks'))
+            # return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('opened_tasks')))
     else:
         edit_task_form = TaskForm(instance=task)
+        next = request.META.get('HTTP_REFERER', '')
     
     context = {
         'title': title,
         'edit_task_form': edit_task_form,
         'task': task,
+        'next': next,
     }
 
     return render(request, 'mainapp/edit-task.html', context)
@@ -124,14 +134,19 @@ def delete_task(request, pk):
 
     if request.method == 'POST':
         task.delete()
-        return HttpResponseRedirect(reverse('opened_tasks'))
+        if 'next' in request.POST.keys():
+            return HttpResponseRedirect(request.POST['next'])
+        else:
+            return HttpResponseRedirect(reverse('opened_tasks'))
     else:
         delete_task_form = TaskForm(instance=task)
+        next = request.META.get('HTTP_REFERER')
 
     context = {
         'title': title,
         'delete_task_form': delete_task_form,
         'task': task,
+        'next': next,
     }
 
     return render(request, 'mainapp/delete-task.html', context)

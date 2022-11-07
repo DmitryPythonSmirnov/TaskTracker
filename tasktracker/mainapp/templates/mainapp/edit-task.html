@@ -7,16 +7,12 @@
 
     <form action="{% url 'edit_task' task.pk %}" method="post">
         {% csrf_token %}
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
         {{ edit_task_form.as_p }}
         <input class="form-control text-primary" type="submit" value="Сохранить">
     </form>
-
-    <br>
-
-    <form action="{% url 'delete_task' task.pk %}">
-        <button class="form-control text-danger" type="submit">Удалить задачу</button>
-    </form>
-
 </div>
 
 {% endblock content %}

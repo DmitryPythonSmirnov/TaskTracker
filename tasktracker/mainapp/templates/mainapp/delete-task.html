@@ -7,8 +7,11 @@
 
     <form action="{% url 'delete_task' task.pk %}" method="post">
         {% csrf_token %}
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
         {{ delete_task_form.as_p }}
-        <input class="form-control text-danger" type="submit" value="Подтвердить удаление">
+        <input class="form-control btn btn-danger" type="submit" value="Подтвердить удаление">
     </form>
 
     <br>
