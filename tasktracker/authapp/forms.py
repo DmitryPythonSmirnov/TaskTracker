@@ -17,7 +17,7 @@ class TaskUserLoginForm(AuthenticationForm):
 class TaskUserRegisterForm(UserCreationForm):
     class Meta:
         model = TaskUser
-        fields = ('username', 'password1', 'password2', 'email', 'age')
+        fields = ('username', 'password1', 'password2')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
