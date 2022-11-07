@@ -65,6 +65,8 @@ Win+R -> cmd -> OK
 
 `python -m venv .venv`
 
+В текущем катлоге должен появиться каталог ".venv".
+
 5. Активировать виртуальное окружение.
 
 `.venv\Scripts\activate`
@@ -85,7 +87,9 @@ Win+R -> cmd -> OK
 
 `cd tasktracker`
 
-9. Создать миграции (подготовка скриптов для создания базы структуры базы данных): `python manage.py makemigrations`.
+9. Создать миграции (подготовка скриптов для создания базы структуры базы данных):  
+`python manage.py makemigrations`
+
 ```
 python manage.py makemigrations
 Migrations for 'authapp':
@@ -96,7 +100,10 @@ Migrations for 'mainapp':
     - Create model Task
 ```
 
-10. Выполнить миграции: `python manage.py migrate`.  
+10. Выполнить миграции:
+
+`python manage.py migrate`
+
 В текущем каталоге должен повиться файл "db.sqlite3".
 ```
 python manage.py migrate
@@ -125,7 +132,9 @@ Running migrations:
   Applying sessions.0001_initial... OK
 ```
 
-11. Создать суперпользователя (адрес электронной почты можно не указывать): `python manage.py createsuperuser`.
+11. Создать суперпользователя (адрес электронной почты можно не указывать):  
+`python manage.py createsuperuser`
+
 ```
 python manage.py createsuperuser
 Имя пользователя: django
@@ -135,8 +144,7 @@ Password (again):
 Superuser created successfully.
 ```
 
-12. Запустить локальный web-сервер.
-
+12. Запустить локальный web-сервер.  
 `python manage.py runserver`
 
 13. Зайти на http://127.0.0.1:8000/
